@@ -1,2 +1,8 @@
-﻿  Hex2S19.vcxproj -> F:\VC++\HexToS19\Hex2S19\Debug\Hex2S19.exe
+﻿  FileManage.cpp
+f:\vc++\hextos19\hex2s19\hex2s19\filemanage.cpp(65): warning C4101: “type”: 未引用的局部变量
+f:\vc++\hextos19\hex2s19\hex2s19\filemanage.cpp(64): warning C4101: “address”: 未引用的局部变量
+f:\vc++\hextos19\hex2s19\hex2s19\filemanage.cpp(63): warning C4101: “data_length”: 未引用的局部变量
+f:\vc++\hextos19\hex2s19\hex2s19\filemanage.cpp(55): warning C4101: “i”: 未引用的局部变量
+f:\vc++\hextos19\hex2s19\hex2s19\filemanage.cpp(53): warning C4101: “ret”: 未引用的局部变量
+  Hex2S19.vcxproj -> F:\VC++\HexToS19\Hex2S19\Debug\Hex2S19.exe
   Hex2S19.vcxproj -> F:\VC++\HexToS19\Hex2S19\Debug\Hex2S19.pdb (Full PDB)

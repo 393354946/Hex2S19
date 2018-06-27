@@ -45,7 +45,9 @@ void ReadFileByChar(void)
 void File_Read(void)
 {
 	ifstream InputFile;
-	unsigned char aucLength[2],aucAddress[4],aucType[2],aucData[32];
+	ofstream OutputFile;
+	
+	unsigned char aucLength[2],aucAddress[4],aucType[2],aucData[64];
 	unsigned char aucTempLenth[1],aucTempAddress[2],aucTempType[1],aucTempData[16];
 	char ch;
 	int ret;
@@ -65,10 +67,17 @@ void File_Read(void)
 
 	/*open the file*/
 	InputFile.open("F:\\VC++\\HexToS19\\Hex2S19\\Hex2S19\\Bootloader.hex", ios::in);
-
 	if (!InputFile)
 	{
 		cout << "文件读错误";
+		system("pause");
+		exit(1);
+	}
+
+	OutputFile.open("F:\\VC++\\HexToS19\\Hex2S19\\Hex2S19\\out.txt", ios::out | ios::app);
+	if (!OutputFile)//或者写成myfile.fail()  
+	{
+		cout << "文件创建失败,磁盘不可写或者文件为只读!";
 		system("pause");
 		exit(1);
 	}
@@ -86,7 +95,8 @@ void File_Read(void)
 	for (uidex = 0; uidex < content.length(); uidex++)
 	{
 		memset(aucTempData, 0x00, 16);
-		memset(aucData, 0x00, 32);
+		memset(aucData, 0x00, 64);
+
 		if (content[uidex] == ':')
 		{
 			/*Get the data length*/
@@ -117,16 +127,16 @@ void File_Read(void)
 				memcpy(&aucData, &content[uidex + 9], 32);
 				CONV_AscHex(aucTempData, 16, aucData, 32);
 				InputFormat.pucData = aucTempData;
+				OutputFile << aucData << endl;
 			}
-			
-			
+			else if (InputFormat.ucDataType == 0x01)
+			{
+				if ((InputFormat.uiDataSize == 0x00) && (InputFormat.uiStartAddress == 0x0000))
+				{
+					OutputFile.close();
+				}
+			}
 		}
-		/*if (InputFormat.ucDataType == 0x00)
-		{
-			//memcpy(&Updated_Content[uidex], &content[uidex + 8], InputFormat.uiDataSize);
-			Updated_Content[uidex] = content[uidex + 8];
-		}*/
-		cout << InputFormat.uiDataSize << InputFormat.uiStartAddress << InputFormat.ucDataType << endl;
 	}
 
 	cout << content.length();
@@ -135,6 +145,7 @@ void File_Read(void)
 		cout << "文件内容已经全部读完" << endl;
 	}
 	InputFile.close();
+	
 	system("pause");
 }
 
