@@ -28,7 +28,5 @@ int main(void)
 */
 int main(void)
 {
-	//WriteLetter();
-	//ReadFileByChar();
 	File_Read();
 }

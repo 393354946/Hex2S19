@@ -10,6 +10,7 @@ typedef struct
 }Format_HexFile;
 
 void get_line(char* str, FILE *in);
+void Hex_to_S19(unsigned int Length, unsigned char *pData);
 
 extern void WriteLetter(void);
 extern void ReadFileByChar(void);
